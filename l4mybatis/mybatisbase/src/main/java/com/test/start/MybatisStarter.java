@@ -24,30 +24,31 @@ public class MybatisStarter {
 
         SqlSession session = sqlSessionFactory.openSession();
         try {
-//            UserMapper userMapper = session.getMapper(UserMapper.class);
-//            User user = new User();
-//            user.setId("1");
-//            user.setAccountID("1");
-//            user.setUserName("test");
-//            EnumStatus status = EnumStatus.CANCEL;
-//            user.setStatusDef(status);
-//            user.setStatusOrdinal(status);
-//            user.setStatusCustom(status);
-//            int ret = userMapper.insertUser(user);
-//            System.out.println(ret);
-//            user = userMapper.selectUser(1);
-//            System.out.println(user);
-//            session.commit();
+            UserMapper userMapper = session.getMapper(UserMapper.class);
+            User user = new User();
+            user.setId("1");
+            user.setAccountID("1");
+            user.setUserName("test");
+            EnumStatus status = EnumStatus.CANCEL;
+            user.setStatusDef(status);
+            user.setStatusOrdinal(status);
+            user.setStatusCustom(status);
+            int ret = userMapper.insertUser(user);
+            System.out.println(ret);
+            user = userMapper.selectUser(1);
+            System.out.println(user);
+            session.commit();
 
             BlogMapper mapper = session.getMapper(BlogMapper.class);
             Blog blog = new Blog();
             blog.setId(1);
             blog.setName("xx");
             blog.setType(BlogType.INVALID);
-            int ret = mapper.insertBlog(blog);
+            ret = mapper.insertBlog(blog);
             System.out.println(ret);
             blog = mapper.selectBlog(1);
            System.out.println(blog);
+           session.commit();
         } catch (Exception e) {
             session.rollback();
             System.out.print(e.toString());
