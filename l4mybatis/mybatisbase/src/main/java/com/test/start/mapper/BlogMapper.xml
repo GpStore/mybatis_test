@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.start.mapper.BlogMapper">
+
+    <resultMap type="Blog" id="BlogMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+    </resultMap>
+
+    <select id="selectBlog" resultMap="BlogMap">
+             select * from Blog where id = #{id}
+    </select>
+
+    <insert id="insertBlog" parameterType="Blog">
+        insert into  Blog(id,name,type)
+          VALUES (
+          #{id},
+          #{name},
+          #{type, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}
+          )
+    </insert>
+
+</mapper>
